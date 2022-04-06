@@ -47,16 +47,21 @@ class MainBoardViewController: UIViewController {
         } else {
             print("You selected value\(sliderValueInt)")
         }
-       //next round
+        //next round
        round += 1
-      //refresh lable value with round
+       //refresh lable value with round
         roundLabel.text = "Round " + String(round)
         
-        //
+       //
         updateGuessingNumber()
         
         if round == 10 {
             setUpTheGame()
+        let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try again", style:.default, handler:nil))
+            self.present(alert,animated: true, completion: nil)
+            self.round = 1
+            self.score = 0
         }
     }
     
@@ -66,9 +71,9 @@ class MainBoardViewController: UIViewController {
     
     func setUpTheGame() {
         // Set up the first round
-        round = 1
+        round = 0
         
-        //Setting up the game.
+        //Setting up the game
         // 1.Set the slider value to 50
         slider.value = 50
         
@@ -88,5 +93,7 @@ class MainBoardViewController: UIViewController {
         round = +1
         roundLabel.text  = "Round: " + String(round)
     }
+    
+    
 }
 

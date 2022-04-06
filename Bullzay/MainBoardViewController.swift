@@ -85,6 +85,8 @@ class MainBoardViewController: UIViewController {
         
         // 3.Set score to 0
         scoreLabel.text = "Score: " + String (score)
+        
+        roundLabel.text = "Round: " + String(round)
     }
     
     func updateGuessingNumber() {

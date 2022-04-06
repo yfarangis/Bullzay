@@ -60,6 +60,9 @@ class MainBoardViewController: UIViewController {
         let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Try again", style:.default, handler:nil))
             self.present(alert,animated: true, completion: nil)
+            
+            
+            
             self.round = 1
             self.score = 0
         }

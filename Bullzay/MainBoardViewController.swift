@@ -27,10 +27,9 @@ class MainBoardViewController: UIViewController {
         
         slider.setThumbImage(normalThumbImage, for: .normal)
         slider.setThumbImage(highlightedThumbImage, for: .highlighted)
-        
         setUpTheGame()
     }
-
+    
     @IBAction func didTapSelectButton(_ sender: Any) {
         //select a value from slider
         let sliderValue: Float = slider.value
@@ -48,23 +47,15 @@ class MainBoardViewController: UIViewController {
             print("You selected value\(sliderValueInt)")
         }
         //next round
-       round += 1
-       //refresh lable value with round
-        roundLabel.text = "Round " + String(round)
-        
-       //
-        updateGuessingNumber()
-        
-        if round == 10 {
-            setUpTheGame()
-        let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Try again", style:.default, handler:nil))
-            self.present(alert,animated: true, completion: nil)
+        if round < 10 {
+             round += 1
             
-            
-            
-            self.round = 1
-            self.score = 0
+            //refresh lable value with round
+            roundLabel.text = "Round " + String(round)
+            updateGuessingNumber()
+        }  else {
+            showResults()  
+     
         }
     }
     
@@ -74,7 +65,7 @@ class MainBoardViewController: UIViewController {
     
     func setUpTheGame() {
         // Set up the first round
-        round = 0
+        round = 1
         
         //Setting up the game
         // 1.Set the slider value to 50
@@ -99,6 +90,20 @@ class MainBoardViewController: UIViewController {
         roundLabel.text  = "Round: " + String(round)
     }
     
+    func showResults () {
+        //created alert button
+        let alert = UIAlertController(title: "Game Over", message: "Score: \(score)", preferredStyle: .alert)
+        //to place a number inside a text \(number)
+        let okButton: UIAlertAction = UIAlertAction(title: "Try Again", style: .default, handler: {_ in
+            //actions when tapped the button
+            print("Tapped the button")
+            self.setUpTheGame()
+        })
+        //added button in alert
+        alert.addAction(okButton)
+        //showed alert on the screen
+        present(alert,animated: true)
+    }
     
 }
 
